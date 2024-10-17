@@ -1,52 +1,37 @@
 // Footer.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MdArrowForward } from 'react-icons/md';
+import CV from '../assets/JOANNE WENDOH O. Resume (1).pdf';
 
 const Footer = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleDownload = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      toast.success("CV Downloaded!", { position: "bottom-center" });
-    }, 2000); // Simulate download time
-  };
-
   return (
     <footer className="bg-gray-900 text-white py-8">
       <ToastContainer />
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
         
-        {/* Profile Section with Download Button */}
+        {/* Profile Section with View Button */}
         <div className="flex items-center mb-4 md:mb-0">
           <img 
             src="src/images/passport (1).jpeg" 
-            alt="Profile" 
-            className="rounded-full border-4 border-gray-700 shadow-lg mr-4" 
+            alt="Joanne Wendoh, Full-Stack Developer" 
+            className="rounded-full border-4 border-gray-700 shadow-lg mr-4 h-16 w-16" // Reduced size
           />
           <div className="text-left">
             <p className="font-bold text-lg">Joanne Wendoh</p>
-            <p className="text-sm text-gray-400">FullStack Developer & Machine Learning Scientist</p>
+            <p className="text-sm text-gray-400">Full-Stack Developer & Machine Learning Scientist</p>
             <div className="flex items-center mt-2">
-              <a 
-                href="/cv.pdf"  // Update this path to your CV file
-                onClick={handleDownload}
-                className={`flex items-center bg-blue-600 text-white py-2 px-4 rounded-l transition-transform duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-500'}`}
-              >
-                <MdArrowForward className={`transition-transform duration-300 ${isLoading ? 'animate-spin' : ''}`} />
-                <span className="ml-2">{isLoading ? 'Downloading...' : 'Download CV'}</span>
-              </a>
               <a
-                href="/cv.pdf" // Same path for viewing
+                href={CV} // Path for viewing
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-600 text-white py-2 px-4 rounded-r transition-transform duration-300 hover:bg-gray-500"
+                className="bg-gray-600 text-white py-2 px-4 rounded transition-transform duration-300 hover:bg-gray-500 flex items-center"
+                aria-label="View CV"
               >
-                View CV
+                <MdArrowForward className="mr-2" />
+                <span>View CV</span>
               </a>
             </div>
           </div>
@@ -59,6 +44,7 @@ const Footer = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-400 transform transition-transform duration-300 hover:scale-110 hover:text-white"
+            aria-label="LinkedIn Profile"
           >
             <FaLinkedin className="h-8 w-8" />
           </a>
@@ -67,6 +53,7 @@ const Footer = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-400 transform transition-transform duration-300 hover:scale-110 hover:text-white"
+            aria-label="GitHub Profile"
           >
             <FaGithub className="h-8 w-8" />
           </a>
